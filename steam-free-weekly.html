@@ -3,54 +3,212 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Steam 限免週報 - 2026年05月15日</title>
+<title>🎮 Steam 限免週報 - 2026-05-15</title>
 <style>
-
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", sans-serif; background:#1a1a2e; color:#e0e0e0; line-height:1.7; }
-    .container { max-width:800px; margin:0 auto; padding:40px 20px; }
-    h1 { text-align:center; font-size:2em; margin-bottom:10px; color:#ffd700; }
-    .subtitle { text-align:center; color:#888; margin-bottom:30px; font-size:0.95em; }
-    .section-title { font-size:1.4em; margin:30px 0 15px; padding-bottom:8px; border-bottom:2px solid #ffd700; color:#ffd700; display:flex; align-items:center; gap:10px; }
-    .section-title .count { font-size:0.7em; background:#333; padding:2px 10px; border-radius:12px; color:#aaa; }
-
-    .game-card { background:#16213e; border-radius:10px; padding:18px 22px; margin-bottom:12px; transition:transform 0.15s, box-shadow 0.15s; }
-    .game-card:hover { transform:translateY(-2px); box-shadow:0 4px 20px rgba(255,215,0,0.15); }
-    .game-card a { color:#ffd700; text-decoration:none; font-size:1.1em; font-weight:600; }
-    .game-card a:hover { text-decoration:underline; }
-    .game-card .meta { color:#888; font-size:0.85em; margin-left:12px; }
-    .game-card .badge { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.75em; margin-left:8px; font-weight:bold; }
-    .game-card .badge.limited { background:#e74c3c; color:#fff; }
-    .game-card .badge.free { background:#2ecc71; color:#fff; }
-
-    .empty-msg { text-align:center; color:#666; padding:30px; }
-
-    footer { text-align:center; margin-top:40px; padding-top:20px; border-top:1px solid #333; color:#666; font-size:0.85em; }
-    footer a { color:#888; }
-
-    @media (max-width:600px) {
-        .container { padding:20px 12px; }
-        h1 { font-size:1.5em; }
-        .game-card { padding:14px 16px; }
-    }
-
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0d1117;
+    color: #c9d1d9;
+    font-family: 'Segoe UI', 'Noto Sans TC', sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+  header {
+    text-align: center;
+    padding: 2rem 0 3rem;
+    border-bottom: 1px solid #30363d;
+    margin-bottom: 2rem;
+  }
+  header h1 {
+    font-size: 2.2rem;
+    background: linear-gradient(135deg, #58a6ff, #bc8cff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+  }
+  header .subtitle {
+    color: #8b949e;
+    font-size: 1rem;
+  }
+  .week-range {
+    display: inline-block;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 20px;
+    padding: 0.3rem 1.2rem;
+    font-size: 0.9rem;
+    color: #8b949e;
+    margin-top: 0.8rem;
+  }
+  .game-list { list-style: none; }
+  .game-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .game-card:hover {
+    border-color: #58a6ff;
+    transform: translateX(4px);
+  }
+  .game-card .date {
+    font-size: 0.8rem;
+    color: #8b949e;
+    margin-bottom: 0.4rem;
+  }
+  .game-card .title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #58a6ff;
+    margin-bottom: 0.5rem;
+  }
+  .game-card .meta-row {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .game-card .author {
+    color: #8b949e;
+    font-size: 0.85rem;
+  }
+  .game-card .author::before { content: '👤 '; }
+  .game-card .push {
+    color: #f0883e;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  .game-card .push::before { content: '👍 '; }
+  .game-card .platform {
+    display: inline-block;
+    font-size: 0.75rem;
+    padding: 0.15rem 0.6rem;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+  .platform-steam { background: #1a5fb4; color: #99c1f1; }
+  .platform-epic { background: #2e2e2e; color: #f9f06b; }
+  .platform-gog { background: #3d1d6e; color: #dc8add; }
+  a.game-link {
+    display: inline-block;
+    margin-top: 0.6rem;
+    color: #58a6ff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    transition: background 0.2s;
+  }
+  a.game-link:hover { background: #1f2937; }
+  .ended-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    background: #da3633;
+    color: #fff;
+    padding: 0.1rem 0.5rem;
+    border-radius: 8px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+  footer {
+    text-align: center;
+    padding: 3rem 0 1.5rem;
+    color: #484f58;
+    font-size: 0.8rem;
+    border-top: 1px solid #30363d;
+    margin-top: 2rem;
+  }
+  footer a { color: #58a6ff; }
+  .stats {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #8b949e;
+    font-size: 0.95rem;
+  }
+  .stats strong { color: #bc8cff; }
 </style>
 </head>
 <body>
 <div class="container">
-<h1>🎮 Steam 限免週報</h1>
-<p class="subtitle">2026年05月15日 · 自動整理自 PTT Steam 板</p>
-<h2 class="section-title">🔥 限免遊戲 <span class="count">1</span></h2>
-<div class="game-card">
-  <a href="https://www.ptt.cc/bbs/Steam/M.1778778361.A.A2D.html" target="_blank" rel="noopener">Terrors to Unveil - Day Off</a>
-  <span class="badge limited">限免</span>
-  <span class="meta">5/15</span>
+
+<header>
+  <h1>🎮 Steam 限免週報</h1>
+  <p class="subtitle">PTT Steam 板 [限免] 文章彙整</p>
+  <span class="week-range">📅 2026-05-09 ~ 2026-05-15</span>
+</header>
+
+<div class="stats">
+  本週共 <strong>5</strong> 篇限免文章
 </div>
-<h2 class="section-title">🆓 其他免費資訊 <span class="count">0</span></h2>
-<p class="empty-msg">本週無其他免費資訊</p>
+
+<ul class="game-list">
+
+  <li class="game-card">
+    <div class="date">📅 2026-05-15</div>
+    <div class="title">Terrors to Unveil - Day Off <span class="platform platform-steam">Steam</span></div>
+    <div class="meta-row">
+      <span class="author">LEAFKEY</span>
+      <span class="push">11</span>
+    </div>
+    <a class="game-link" href="https://www.ptt.cc/bbs/Steam/M.1778778361.A.A2D.html" target="_blank">🔗 前往 PTT 文章</a>
+  </li>
+
+  <li class="game-card">
+    <div class="date">📅 2026-05-15</div>
+    <div class="title">Telltale Batman Shadows Edition <span class="platform platform-epic">Epic</span></div>
+    <div class="meta-row">
+      <span class="author">KGarnett05</span>
+      <span class="push">21</span>
+    </div>
+    <a class="game-link" href="https://www.ptt.cc/bbs/Steam/M.1778774607.A.723.html" target="_blank">🔗 前往 PTT 文章</a>
+  </li>
+
+  <li class="game-card">
+    <div class="date">📅 2026-05-14</div>
+    <div class="title">Dishonored 2（冤罪殺機 2）<span class="platform platform-steam">Steam</span><span class="ended-badge">已結束</span></div>
+    <div class="meta-row">
+      <span class="author">KGarnett05</span>
+      <span class="push">13</span>
+    </div>
+    <a class="game-link" href="https://www.ptt.cc/bbs/Steam/M.1778699816.A.667.html" target="_blank">🔗 前往 PTT 文章</a>
+  </li>
+
+  <li class="game-card">
+    <div class="date">📅 2026-05-11</div>
+    <div class="title">Just Move Fall Dungeon Endless Abyss <span class="platform platform-steam">Steam</span></div>
+    <div class="meta-row">
+      <span class="author">LEAFKEY</span>
+      <span class="push">19</span>
+    </div>
+    <a class="game-link" href="https://www.ptt.cc/bbs/Steam/M.1778441849.A.302.html" target="_blank">🔗 前往 PTT 文章</a>
+  </li>
+
+  <li class="game-card">
+    <div class="date">📅 2026-05-10</div>
+    <div class="title">LivingBattle (Steam) 奇怪的東西... <span class="platform platform-steam">Steam</span></div>
+    <div class="meta-row">
+      <span class="author">ahw12000</span>
+      <span class="push">6</span>
+    </div>
+    <a class="game-link" href="https://www.ptt.cc/bbs/Steam/M.1778377314.A.1AA.html" target="_blank">🔗 前往 PTT 文章</a>
+  </li>
+
+</ul>
+
 <footer>
-<p>由 <a href="https://docs.openclaw.ai">OpenClaw</a> 自動整理 · 2026-05-15 20:01</p>
+  <p>🤖 由 OpenClaw 自動生成 · 資料來源：<a href="https://www.ptt.cc/bbs/Steam/index.html" target="_blank">PTT Steam 板</a></p>
+  <p>更新時間：2026-05-15 20:32 (Asia/Taipei)</p>
 </footer>
+
 </div>
 </body>
 </html>
